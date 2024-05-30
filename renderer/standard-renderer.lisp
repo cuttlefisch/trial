@@ -336,7 +336,7 @@
   (setf (light-cache-dirty-p pass) T))
 
 (defmethod enter ((light light) (pass light-cache-render-pass))
-  (array-utils:vector-push-extend-new light (global-lights pass))
+  (vector-push-extend-new light (global-lights pass))
   (setf (light-cache-dirty-p pass) T))
 
 (defmethod leave ((light located-light) (pass light-cache-render-pass))
@@ -345,7 +345,7 @@
   (setf (light-cache-dirty-p pass) T))
 
 (defmethod leave ((light light) (pass light-cache-render-pass))
-  (array-utils:vector-pop-element* (global-lights pass) light)
+  (vector-pop-element* (global-lights pass) light)
   (lru-cache-pop light (allocated-lights pass))
   (setf (light-cache-dirty-p pass) T))
 
@@ -359,11 +359,11 @@
 
 (defmethod enable :after ((light light) (pass light-cache-render-pass))
   (unless (typep light 'located-light)
-    (array-utils:vector-push-extend-new light (global-lights pass))))
+    (vector-push-extend-new light (global-lights pass))))
 
 (defmethod disable :after ((light light) (pass light-cache-render-pass))
   (unless (typep light 'located-light)
-    (array-utils:vector-pop-element* (global-lights pass) light)))
+    (vector-pop-element* (global-lights pass) light)))
 
 (defmethod notice-update :after ((light located-light) (pass light-cache-render-pass))
   (3ds:update light (light-cache pass)))

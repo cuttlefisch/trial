@@ -432,7 +432,7 @@
                do (3ds:enter primitive structure)))))
 
 (defmethod leave :after ((body rigidbody) (system accelerated-rigidbody-system))
-  (unless (array-utils:vector-pop-element* (pending-inserts system) body)
+  (unless (vector-pop-element* (pending-inserts system) body)
     (loop with structure = (acceleration-structure system)
           for primitive across (physics-primitives body)
           do (3ds:leave primitive structure))))

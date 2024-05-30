@@ -209,19 +209,19 @@
 (defgeneric resolve-hits (system hits start end dt &key))
 
 (defmethod enter (thing (system physics-system))
-  (array-utils:vector-push-extend-new thing (%objects system))
+  (vector-push-extend-new thing (%objects system))
   thing)
 
 (defmethod enter ((thing force) (system physics-system))
-  (array-utils:vector-push-extend-new thing (forces system))
+  (vector-push-extend-new thing (forces system))
   thing)
 
 (defmethod leave (thing (system physics-system))
-  (array-utils:vector-pop-element* (%objects system) thing)
+  (vector-pop-element* (%objects system) thing)
   thing)
 
 (defmethod leave ((thing force) (system physics-system))
-  (array-utils:vector-pop-element* (forces system) thing)
+  (vector-pop-element* (forces system) thing)
   thing)
 
 (defmethod contains-p (thing (system physics-system))

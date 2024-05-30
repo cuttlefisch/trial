@@ -110,7 +110,7 @@
   (vector-push-extend generator (hit-generators system)))
 
 (defmethod leave ((generator hit-generator) (system mass-aggregate-system))
-  (array-utils:vector-pop-position (hit-generators system)
+  (vector-pop-position (hit-generators system)
                                    (position generator (hit-generators system))))
 
 (defmethod generate-hits ((system mass-aggregate-system) hits start end)
